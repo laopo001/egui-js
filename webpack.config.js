@@ -1,13 +1,13 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-const WasmPackPlugin = require("@wasm-tool/wasm-pack-plugin");
+// const WasmPackPlugin = require("@wasm-tool/wasm-pack-plugin");
 
 module.exports = {
     entry: './ts/index.ts',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'index.js',
+        filename: 'index.[contenthash:8].js',
     },
     module: {
         rules: [
@@ -17,10 +17,10 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin(),
-        new WasmPackPlugin({
-            crateDirectory: path.resolve(__dirname, "."),
-            outDir: "pkg",
-        }),
+        // new WasmPackPlugin({
+        //     crateDirectory: path.resolve(__dirname, "."),
+        //     outName: "egui_js",
+        // }),
         // Have this example work in Edge which doesn't ship `TextEncoder` or
         // `TextDecoder` at this time.
         new webpack.ProvidePlugin({

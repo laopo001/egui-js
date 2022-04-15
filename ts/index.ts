@@ -1,4 +1,6 @@
-import('../pkg').then(async module => {
-    console.log(module);
-    console.log(module.start('123'))
-})
+import init, { main } from '../static/egui_js.js';
+async function run() {
+  await init();
+  console.log(main('hello'));
+}
+run();
