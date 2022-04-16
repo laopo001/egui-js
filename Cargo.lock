@@ -588,6 +588,7 @@ dependencies = [
  "console_error_panic_hook",
  "eframe",
  "tracing-wasm",
+ "web-sys",
 ]
 
 [[package]]

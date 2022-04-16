@@ -1,9 +1,8 @@
-pub mod web_app; 
-pub mod node;
-pub use node::Node;
+pub mod egui_app;
+pub mod element;
 use eframe::wasm_bindgen::{self, prelude::*};
-use web_app::WebApp;
-
+use egui_app::WebApp;
+pub use element::{view::View, Element};
 
 #[wasm_bindgen]
 pub struct App {
@@ -13,9 +12,8 @@ pub struct App {
 
 #[wasm_bindgen]
 impl App {
-    pub fn create_app(_title: &str, data: &Node) -> App {
+    pub fn create_app(_title: &str, data: &View) -> App {
         let app = WebApp::new(data);
-
         App { internal_app: app }
     }
     pub fn start(self, canvas_id: &str) -> Result<(), eframe::wasm_bindgen::JsValue> {
@@ -27,4 +25,10 @@ impl App {
         let app = self.internal_app;
         eframe::start_web(canvas_id, Box::new(app))
     }
+    // pub fn get_by_id(&self, id: &str) -> {
+    //     let root = self.internal_app.get_data();
+    //     if root.id == id {
+    //         return root;
+    //     }
+    // }
 }

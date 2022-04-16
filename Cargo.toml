@@ -12,9 +12,10 @@ crate-type = ["cdylib"]
 # [lib]
 # crate-type = ["dylib"]
 
-
 [dependencies]
 eframe = "0.17.0" # Gives us egui, epi and web+native backends'
+web-sys = "0.3.57" 
+
 
 [profile.release]
 opt-level = 2 # fast and small wasm
