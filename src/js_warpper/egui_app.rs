@@ -10,6 +10,7 @@ use eframe::{
 use crate::js_warpper::element::view::View;
 // use crate::js_warpper::element::link::Link;
 use crate::js_warpper::element::Element;
+use crate::log;
 pub struct WebApp {
     pub data: *const View,
 }
@@ -23,9 +24,7 @@ impl WebApp {
         return data;
     }
 }
-fn test(s: &str) {
-    web_sys::console::log_1(&eframe::wasm_bindgen::JsValue::from_str(s));
-}
+
 
 impl epi::App for WebApp {
     fn name(&self) -> &str {
@@ -57,32 +56,30 @@ fn loop_div(ui: &mut Ui, view: &View) {
     if view.dir == "vertical" {
         ui.vertical(|ui| {
             for c in view.children.iter() {
-                match c {
-                    Element::Label(label) => {
-                        ui.label(&label.text);
-                    }
-                    Element::View(view) => loop_div(ui, view),
-                    Element::Link(link) => {
-                        ui.hyperlink_to(&link.text, &link.url);
-                    }
+                if c.get_type() == "Label" {
+                    ui.label(c.as_label().text.as_str());
+                } else if c.get_type() == "View" {
+                    loop_div(ui, c.as_view())
+                } else if c.get_type() == "Link" {
+                    let link = c.as_link();
+                    ui.hyperlink_to(&link.text, &link.url);
                 }
             }
         });
     } else if view.dir == "horizontal" {
         ui.horizontal(|ui| {
             for c in view.children.iter() {
-                match c {
-                    Element::Label(label) => {
-                        ui.label(&label.text);
-                    }
-                    Element::View(view) => loop_div(ui, view),
-                    Element::Link(link) => {
-                        ui.hyperlink_to(&link.text, &link.url);
-                    }
+                if c.get_type() == "Label" {
+                    ui.label(c.as_label().text.as_str());
+                } else if c.get_type() == "View" {
+                    loop_div(ui, c.as_view())
+                } else if c.get_type() == "Link" {
+                    let link = c.as_link();
+                    ui.hyperlink_to(&link.text, &link.url);
                 }
             }
         });
     } else {
-        test("view.dir没有匹配");
+        log("view.dir没有匹配");
     }
 }

@@ -1,19 +1,41 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
+* @param {Test} t
+*/
+export function run_test(t: Test): void;
+/**
 */
 export class App {
   free(): void;
 /**
-* @param {string} _title
+* @param {string} title
 * @param {View} data
 * @returns {App}
 */
-  static create_app(_title: string, data: View): App;
+  static create_app(title: string, data: View): App;
 /**
 * @param {string} canvas_id
 */
   start(canvas_id: string): void;
+/**
+* @param {string} id
+* @returns {Element | undefined}
+*/
+  get_by_id_view(id: string): Element | undefined;
+}
+/**
+*/
+export class Element {
+  free(): void;
+/**
+* @returns {number}
+*/
+  readonly iptr: number;
+/**
+* @returns {string}
+*/
+  readonly type: string;
 }
 /**
 */
@@ -24,6 +46,10 @@ export class Label {
 * @returns {Label}
 */
   static new(text: string): Label;
+/**
+* @returns {Element}
+*/
+  as_element(): Element;
 /**
 * @returns {string}
 */
@@ -44,6 +70,10 @@ export class Link {
 */
   static new(text: string, url: string): Link;
 /**
+* @returns {Element}
+*/
+  as_element(): Element;
+/**
 * @returns {string}
 */
   id: string;
@@ -55,6 +85,15 @@ export class Link {
 * @returns {string}
 */
   url: string;
+}
+/**
+*/
+export class Test {
+  free(): void;
+/**
+* @returns {Test}
+*/
+  static new(): Test;
 }
 /**
 */
@@ -78,6 +117,10 @@ export class View {
 */
   add_child_link(node: Link): void;
 /**
+* @returns {Element}
+*/
+  as_element(): Element;
+/**
 * @returns {string}
 */
   id: string;
@@ -87,9 +130,13 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
+  readonly __wbg_element_free: (a: number) => void;
+  readonly element_get_type_name: (a: number, b: number) => void;
+  readonly element_get_ptr: (a: number) => number;
   readonly __wbg_app_free: (a: number) => void;
   readonly app_create_app: (a: number, b: number, c: number) => number;
   readonly app_start: (a: number, b: number, c: number, d: number) => void;
+  readonly app_get_by_id_view: (a: number, b: number, c: number) => number;
   readonly __wbg_link_free: (a: number) => void;
   readonly link_new: (a: number, b: number, c: number, d: number) => number;
   readonly link_set_text: (a: number, b: number, c: number) => void;
@@ -98,12 +145,17 @@ export interface InitOutput {
   readonly link_get_url: (a: number, b: number) => void;
   readonly link_get_id: (a: number, b: number) => void;
   readonly link_set_id: (a: number, b: number, c: number) => void;
+  readonly link_as_element: (a: number) => number;
+  readonly __wbg_test_free: (a: number) => void;
+  readonly test_new: () => number;
+  readonly run_test: (a: number) => void;
   readonly __wbg_label_free: (a: number) => void;
   readonly label_new: (a: number, b: number) => number;
   readonly label_set_text: (a: number, b: number, c: number) => void;
   readonly label_get_text: (a: number, b: number) => void;
   readonly label_get_id: (a: number, b: number) => void;
   readonly label_set_id: (a: number, b: number, c: number) => void;
+  readonly label_as_element: (a: number) => number;
   readonly __wbg_view_free: (a: number) => void;
   readonly view_new: (a: number, b: number) => number;
   readonly view_add_child_view: (a: number, b: number) => void;
@@ -111,6 +163,7 @@ export interface InitOutput {
   readonly view_add_child_link: (a: number, b: number) => void;
   readonly view_get_id: (a: number, b: number) => void;
   readonly view_set_id: (a: number, b: number, c: number) => void;
+  readonly view_as_element: (a: number) => number;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
   readonly __wbindgen_export_2: WebAssembly.Table;

@@ -1,6 +1,6 @@
 use eframe::wasm_bindgen::{self, prelude::*};
 mod js_warpper;
-use js_warpper::{App, element::view::View};
+use js_warpper::{element::view::View, App};
 
 // #[wasm_bindgen]
 // pub fn main(canvas_id: &str, data: &View) -> Result<(), eframe::wasm_bindgen::JsValue> {
@@ -13,3 +13,23 @@ use js_warpper::{App, element::view::View};
 //     let app = App::create_app("", data);
 //     eframe::start_web(canvas_id, Box::new(app.internal_app))
 // }
+
+pub fn log(s: &str) {
+    web_sys::console::log_1(&eframe::wasm_bindgen::JsValue::from_str(s));
+}
+
+#[wasm_bindgen]
+pub struct Test {}
+
+#[wasm_bindgen]
+impl Test{
+    pub fn new() -> Test{
+        Test {  }
+    }
+}
+#[wasm_bindgen]
+pub fn run_test(t: &Test)  {
+    
+    log(&format!("{:p}", t));
+
+}

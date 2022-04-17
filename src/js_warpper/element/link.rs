@@ -48,9 +48,13 @@ impl Link {
     pub fn set_id(&mut self, id: &str) {
         self.id = id.to_string();
     }
-}
-impl Into<Element> for Link {
-    fn into(self) -> Element {
-        Element::Link(self)
+    #[wasm_bindgen(skip)]
+    pub fn as_element(&self) -> Element {
+        unsafe {
+            Element(
+                "Link".to_string(),
+                std::mem::transmute::<&Link, *const u8>(self),
+            )
+        }
     }
 }

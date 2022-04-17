@@ -1,4 +1,4 @@
-use crate::js_warpper::element::label::Label;
+use crate::{js_warpper::element::label::Label, log};
 use crate::js_warpper::element::link::Link;
 use crate::js_warpper::element::Element;
 use eframe::wasm_bindgen::{self, prelude::*};
@@ -26,14 +26,15 @@ impl View {
             id: "".to_string(),
         }
     }
-    pub fn add_child_view(&mut self, node: View) {
-        self.children.push(node.into());
+    pub fn add_child_view(&mut self, node: &View) {
+        log(&format!("{:p}", node));
+        self.children.push(node.as_element());
     }
-    pub fn add_child_label(&mut self, node: Label) {
-        self.children.push(node.into());
+    pub fn add_child_label(&mut self, node: &Label) {
+        self.children.push(node.as_element());
     }
-    pub fn add_child_link(&mut self, node: Link) {
-        self.children.push(node.into());
+    pub fn add_child_link(&mut self, node: &Link) {
+        self.children.push(node.as_element());
     }
     #[wasm_bindgen(getter = id)]
     pub fn get_id(&self) -> String {
@@ -43,9 +44,13 @@ impl View {
     pub fn set_id(&mut self, id: &str) {
         self.id = id.to_string();
     }
-}
-impl Into<Element> for View {
-    fn into(self) -> Element {
-        Element::View(self)
+    #[wasm_bindgen(skip)]
+    pub fn as_element(&self) -> Element {
+        unsafe {
+            Element(
+                "View".to_string(),
+                std::mem::transmute::<&View, *const u8>(self),
+            )
+        }
     }
 }

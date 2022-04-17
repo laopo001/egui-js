@@ -1,7 +1,5 @@
-use eframe::wasm_bindgen::{self, prelude::*};
 use crate::js_warpper::element::Element;
-
-
+use eframe::wasm_bindgen::{self, prelude::*};
 #[wasm_bindgen]
 pub struct Label {
     #[wasm_bindgen(skip)]
@@ -37,9 +35,13 @@ impl Label {
     pub fn set_id(&mut self, id: &str) {
         self.id = id.to_string();
     }
-}
-impl Into<Element> for Label {
-    fn into(self) -> Element {
-        Element::Label(self)
+    #[wasm_bindgen(skip)]
+    pub fn as_element(&self) -> Element {
+        unsafe {
+            Element(
+                "Label".to_string(),
+                std::mem::transmute::<&Label, *const u8>(self),
+            )
+        }
     }
 }
