@@ -39,6 +39,28 @@ export class Element {
 }
 /**
 */
+export class Input {
+  free(): void;
+/**
+* @param {string} text
+* @returns {Input}
+*/
+  static new(text: string): Input;
+/**
+* @returns {Element}
+*/
+  as_element(): Element;
+/**
+* @returns {string}
+*/
+  id: string;
+/**
+* @returns {string}
+*/
+  text: string;
+}
+/**
+*/
 export class Label {
   free(): void;
 /**
@@ -108,6 +130,10 @@ export class View {
 */
   add_child_link(node: Link): void;
 /**
+* @param {Input} node
+*/
+  add_child_input(node: Input): void;
+/**
 * @returns {Element}
 */
   as_element(): Element;
@@ -126,6 +152,7 @@ export interface InitOutput {
   readonly view_add_child_view: (a: number, b: number) => void;
   readonly view_add_child_label: (a: number, b: number) => void;
   readonly view_add_child_link: (a: number, b: number) => void;
+  readonly view_add_child_input: (a: number, b: number) => void;
   readonly view_get_id: (a: number, b: number) => void;
   readonly view_set_id: (a: number, b: number, c: number) => void;
   readonly view_as_element: (a: number) => number;
@@ -153,6 +180,13 @@ export interface InitOutput {
   readonly label_get_id: (a: number, b: number) => void;
   readonly label_set_id: (a: number, b: number, c: number) => void;
   readonly label_as_element: (a: number) => number;
+  readonly __wbg_input_free: (a: number) => void;
+  readonly input_new: (a: number, b: number) => number;
+  readonly input_set_text: (a: number, b: number, c: number) => void;
+  readonly input_get_text: (a: number, b: number) => void;
+  readonly input_get_id: (a: number, b: number) => void;
+  readonly input_set_id: (a: number, b: number, c: number) => void;
+  readonly input_as_element: (a: number) => number;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
   readonly __wbindgen_export_2: WebAssembly.Table;

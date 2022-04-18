@@ -1,6 +1,7 @@
 use crate::{js_warpper::element::label::Label, log};
 use crate::js_warpper::element::link::Link;
 use crate::js_warpper::element::Element;
+use crate::js_warpper::element::input::Input;
 use eframe::wasm_bindgen::{self, prelude::*};
 use std::vec;
 
@@ -34,6 +35,9 @@ impl View {
         self.children.push(node.as_element());
     }
     pub fn add_child_link(&mut self, node: &Link) {
+        self.children.push(node.as_element());
+    }
+    pub fn add_child_input(&mut self, node: &Input) {
         self.children.push(node.as_element());
     }
     #[wasm_bindgen(getter = id)]

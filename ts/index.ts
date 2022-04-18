@@ -1,4 +1,4 @@
-import init, { App, Label, View, Link, } from '../static/egui_js.js';
+import init, { App, Label, View, Link, Input } from '../static/egui_js.js';
 async function run() {
   await init();
   let viewP = View.new("vertical");
@@ -9,9 +9,10 @@ async function run() {
 
   let label = Label.new("123")
   label.id = "label"
+  view.add_child_label(label);
 
-  view.add_child_label(label)
-
+  let input = Input.new("name");
+  view.add_child_input(input);
 
   let link = Link.new("egui on GitHub", "https://www.github.com/emilk/egui/")
   view.add_child_link(link);

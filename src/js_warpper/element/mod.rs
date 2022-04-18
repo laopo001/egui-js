@@ -1,13 +1,13 @@
 pub mod label;
 pub mod link;
 pub mod view;
-
-use eframe::wasm_bindgen::__rt::WasmRefCell;
+pub mod input;
+// use eframe::wasm_bindgen::__rt::WasmRefCell;
 use eframe::wasm_bindgen::{self, prelude::*};
 use label::Label;
 use link::Link;
 use view::View;
-
+use input::Input;
 #[wasm_bindgen]
 pub struct Element(String, *const u8);
 
@@ -39,6 +39,10 @@ impl Element {
 
     pub fn as_view(&self) -> &View {
         return unsafe { std::mem::transmute::<*const u8, &View>(self.1) };
+    }
+
+    pub fn as_input(&self) -> &mut Input {
+        return unsafe { std::mem::transmute::<*const u8, &mut Input>(self.1) };
     }
 
     pub fn get_type(&self) -> &str {

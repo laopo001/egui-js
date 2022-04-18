@@ -25,7 +25,6 @@ impl WebApp {
     }
 }
 
-
 impl epi::App for WebApp {
     fn name(&self) -> &str {
         "eframe template"
@@ -38,47 +37,38 @@ impl epi::App for WebApp {
 
             let data = unsafe { &*self.data };
             loop_div(ui, data);
-            // test(&data.children.len().to_string());
 
-            // for x in 0..10000 {
-            //     ui.vertical(|ui| {
-            //         ui.label("&label.tex");
-            //         ui.hyperlink_to("egui on GitHub", "https://www.github.com/emilk/egui/");
-            //     });
-            // }
+            // ui.text_edit_singleline(&mut "name");
 
-            // egui::warn_if_debug_build(ui);
+            for event in &ctx.output().events {
+                // output_event_history.push_back(event.clone());
+                log(&format!("{:?}", event));
+            }
         });
     }
 }
 
 fn loop_div(ui: &mut Ui, view: &View) {
+    let run = |ui: &mut Ui| {
+        for c in view.children.iter() {
+            if c.get_type() == "Label" {
+                ui.label(c.as_label().text.as_str());
+            } else if c.get_type() == "View" {
+                loop_div(ui, c.as_view())
+            } else if c.get_type() == "Link" {
+                let link = c.as_link();
+                ui.hyperlink_to(&link.text, &link.url);
+            } else if c.get_type() == "Input" {
+                let input = c.as_input();
+                ui.text_edit_singleline(&mut input.text);
+
+            }
+        }
+    };
     if view.dir == "vertical" {
-        ui.vertical(|ui| {
-            for c in view.children.iter() {
-                if c.get_type() == "Label" {
-                    ui.label(c.as_label().text.as_str());
-                } else if c.get_type() == "View" {
-                    loop_div(ui, c.as_view())
-                } else if c.get_type() == "Link" {
-                    let link = c.as_link();
-                    ui.hyperlink_to(&link.text, &link.url);
-                }
-            }
-        });
+        ui.vertical(run);
     } else if view.dir == "horizontal" {
-        ui.horizontal(|ui| {
-            for c in view.children.iter() {
-                if c.get_type() == "Label" {
-                    ui.label(c.as_label().text.as_str());
-                } else if c.get_type() == "View" {
-                    loop_div(ui, c.as_view())
-                } else if c.get_type() == "Link" {
-                    let link = c.as_link();
-                    ui.hyperlink_to(&link.text, &link.url);
-                }
-            }
-        });
+        ui.horizontal(run);
     } else {
         log("view.dir没有匹配");
     }
