@@ -45,3 +45,10 @@ impl Label {
         }
     }
 }
+
+use eframe::egui::Ui;
+impl Label {
+    pub fn update(&mut self, ui: &mut Ui) {
+        ui.label(&self.text);
+    }
+}

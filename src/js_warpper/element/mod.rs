@@ -1,13 +1,15 @@
+pub mod button;
+pub mod input;
 pub mod label;
 pub mod link;
 pub mod view;
-pub mod input;
 // use eframe::wasm_bindgen::__rt::WasmRefCell;
+use button::Button;
 use eframe::wasm_bindgen::{self, prelude::*};
+use input::Input;
 use label::Label;
 use link::Link;
 use view::View;
-use input::Input;
 #[wasm_bindgen]
 pub struct Element(String, *const u8);
 
@@ -29,20 +31,23 @@ impl Element {
 }
 
 impl Element {
-    pub fn as_label(&self) -> &Label {
-        return unsafe { std::mem::transmute::<*const u8, &Label>(self.1) };
+    pub fn as_label(&self) -> &mut Label {
+        return unsafe { std::mem::transmute::<*const u8, &mut Label>(self.1) };
     }
 
-    pub fn as_link(&self) -> &Link {
-        return unsafe { std::mem::transmute::<*const u8, &Link>(self.1) };
+    pub fn as_link(&self) -> &mut Link {
+        return unsafe { std::mem::transmute::<*const u8, &mut Link>(self.1) };
     }
 
-    pub fn as_view(&self) -> &View {
-        return unsafe { std::mem::transmute::<*const u8, &View>(self.1) };
+    pub fn as_view(&self) -> &mut View {
+        return unsafe { std::mem::transmute::<*const u8, &mut View>(self.1) };
     }
 
     pub fn as_input(&self) -> &mut Input {
         return unsafe { std::mem::transmute::<*const u8, &mut Input>(self.1) };
+    }
+    pub fn as_button(&self) -> &mut Button {
+        return unsafe { std::mem::transmute::<*const u8, &mut Button>(self.1) };
     }
 
     pub fn get_type(&self) -> &str {

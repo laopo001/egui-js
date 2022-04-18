@@ -1,6 +1,5 @@
 use crate::js_warpper::element::Element;
 use eframe::wasm_bindgen::{self, prelude::*};
-use std::vec;
 
 #[wasm_bindgen]
 pub struct Link {
@@ -56,5 +55,12 @@ impl Link {
                 std::mem::transmute::<&Link, *const u8>(self),
             )
         }
+    }
+}
+
+use eframe::egui::Ui;
+impl Link {
+    pub fn update(&mut self, ui: &mut Ui) {
+        ui.hyperlink_to(&self.text, &self.url);
     }
 }

@@ -22,6 +22,32 @@ export class App {
 }
 /**
 */
+export class Button {
+  free(): void;
+/**
+* @param {string} text
+* @returns {Button}
+*/
+  static new(text: string): Button;
+/**
+* @returns {Element}
+*/
+  as_element(): Element;
+/**
+* @param {Function} cb
+*/
+  on_click(cb: Function): void;
+/**
+* @returns {string}
+*/
+  id: string;
+/**
+* @returns {string}
+*/
+  text: string;
+}
+/**
+*/
 export class Element {
   free(): void;
 /**
@@ -134,6 +160,10 @@ export class View {
 */
   add_child_input(node: Input): void;
 /**
+* @param {Button} node
+*/
+  add_child_button(node: Button): void;
+/**
 * @returns {Element}
 */
   as_element(): Element;
@@ -147,15 +177,39 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
+  readonly __wbg_button_free: (a: number) => void;
+  readonly button_new: (a: number, b: number) => number;
+  readonly button_set_text: (a: number, b: number, c: number) => void;
+  readonly button_get_text: (a: number, b: number) => void;
+  readonly button_get_id: (a: number, b: number) => void;
+  readonly button_set_id: (a: number, b: number, c: number) => void;
+  readonly button_as_element: (a: number) => number;
+  readonly button_on_click: (a: number, b: number) => void;
+  readonly __wbg_element_free: (a: number) => void;
+  readonly element_get_type_name: (a: number, b: number) => void;
+  readonly element_get_ptr: (a: number) => number;
+  readonly element_get_js_ptr: (a: number) => number;
+  readonly __wbg_app_free: (a: number) => void;
+  readonly app_create_app: (a: number, b: number, c: number) => number;
+  readonly app_start: (a: number, b: number, c: number, d: number) => void;
+  readonly app_get_by_id_element: (a: number, b: number, c: number) => number;
   readonly __wbg_view_free: (a: number) => void;
   readonly view_new: (a: number, b: number) => number;
   readonly view_add_child_view: (a: number, b: number) => void;
   readonly view_add_child_label: (a: number, b: number) => void;
   readonly view_add_child_link: (a: number, b: number) => void;
   readonly view_add_child_input: (a: number, b: number) => void;
+  readonly view_add_child_button: (a: number, b: number) => void;
   readonly view_get_id: (a: number, b: number) => void;
   readonly view_set_id: (a: number, b: number, c: number) => void;
   readonly view_as_element: (a: number) => number;
+  readonly __wbg_label_free: (a: number) => void;
+  readonly label_new: (a: number, b: number) => number;
+  readonly label_set_text: (a: number, b: number, c: number) => void;
+  readonly label_get_text: (a: number, b: number) => void;
+  readonly label_get_id: (a: number, b: number) => void;
+  readonly label_set_id: (a: number, b: number, c: number) => void;
+  readonly label_as_element: (a: number) => number;
   readonly __wbg_link_free: (a: number) => void;
   readonly link_new: (a: number, b: number, c: number, d: number) => number;
   readonly link_set_text: (a: number, b: number, c: number) => void;
@@ -165,21 +219,6 @@ export interface InitOutput {
   readonly link_get_id: (a: number, b: number) => void;
   readonly link_set_id: (a: number, b: number, c: number) => void;
   readonly link_as_element: (a: number) => number;
-  readonly __wbg_app_free: (a: number) => void;
-  readonly app_create_app: (a: number, b: number, c: number) => number;
-  readonly app_start: (a: number, b: number, c: number, d: number) => void;
-  readonly app_get_by_id_element: (a: number, b: number, c: number) => number;
-  readonly __wbg_element_free: (a: number) => void;
-  readonly element_get_type_name: (a: number, b: number) => void;
-  readonly element_get_ptr: (a: number) => number;
-  readonly element_get_js_ptr: (a: number) => number;
-  readonly __wbg_label_free: (a: number) => void;
-  readonly label_new: (a: number, b: number) => number;
-  readonly label_set_text: (a: number, b: number, c: number) => void;
-  readonly label_get_text: (a: number, b: number) => void;
-  readonly label_get_id: (a: number, b: number) => void;
-  readonly label_set_id: (a: number, b: number, c: number) => void;
-  readonly label_as_element: (a: number) => number;
   readonly __wbg_input_free: (a: number) => void;
   readonly input_new: (a: number, b: number) => number;
   readonly input_set_text: (a: number, b: number, c: number) => void;

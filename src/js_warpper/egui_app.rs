@@ -1,5 +1,3 @@
-use std::f32::consts::E;
-
 // use eframe::wasm_bindgen::{self, prelude::*};
 use eframe::wasm_bindgen::{self, prelude::*};
 use eframe::{
@@ -40,10 +38,10 @@ impl epi::App for WebApp {
 
             // ui.text_edit_singleline(&mut "name");
 
-            for event in &ctx.output().events {
-                // output_event_history.push_back(event.clone());
-                log(&format!("{:?}", event));
-            }
+            // for event in &ctx.output().events {
+            //     // output_event_history.push_back(event.clone());
+            //     log(&format!("{:?}", event));
+            // }
         });
     }
 }
@@ -52,16 +50,19 @@ fn loop_div(ui: &mut Ui, view: &View) {
     let run = |ui: &mut Ui| {
         for c in view.children.iter() {
             if c.get_type() == "Label" {
-                ui.label(c.as_label().text.as_str());
+                let label = c.as_label();
+                label.update(ui);
             } else if c.get_type() == "View" {
                 loop_div(ui, c.as_view())
             } else if c.get_type() == "Link" {
                 let link = c.as_link();
-                ui.hyperlink_to(&link.text, &link.url);
+                link.update(ui);
             } else if c.get_type() == "Input" {
                 let input = c.as_input();
-                ui.text_edit_singleline(&mut input.text);
-
+                input.update(ui);
+            } else if c.get_type() == "Button" {
+                let el = c.as_button();
+                el.update(ui);
             }
         }
     };

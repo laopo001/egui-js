@@ -1,7 +1,9 @@
-use crate::{js_warpper::element::label::Label, log};
-use crate::js_warpper::element::link::Link;
-use crate::js_warpper::element::Element;
-use crate::js_warpper::element::input::Input;
+use crate:: log;
+use super::label::Label;
+use super::link::Link;
+use super::Element;
+use super::input::Input;
+use super::button::Button;
 use eframe::wasm_bindgen::{self, prelude::*};
 use std::vec;
 
@@ -28,7 +30,6 @@ impl View {
         }
     }
     pub fn add_child_view(&mut self, node: &View) {
-        log(&format!("{:p}", node));
         self.children.push(node.as_element());
     }
     pub fn add_child_label(&mut self, node: &Label) {
@@ -38,6 +39,9 @@ impl View {
         self.children.push(node.as_element());
     }
     pub fn add_child_input(&mut self, node: &Input) {
+        self.children.push(node.as_element());
+    }
+    pub fn add_child_button(&mut self, node: &Button) {
         self.children.push(node.as_element());
     }
     #[wasm_bindgen(getter = id)]

@@ -1,4 +1,4 @@
-import init, { App, Label, View, Link, Input } from '../static/egui_js.js';
+import init, { App, Label, View, Link, Input, Button } from '../static/egui_js.js';
 async function run() {
   await init();
   let viewP = View.new("vertical");
@@ -17,6 +17,12 @@ async function run() {
   let link = Link.new("egui on GitHub", "https://www.github.com/emilk/egui/")
   view.add_child_link(link);
 
+  let button = Button.new('button');
+  button.on_click(function () {
+    input.text =input.text + "1";
+  });
+  view.add_child_button(button);
+
   viewP.add_child_view(view);
 
   // setInterval(() => {
@@ -30,9 +36,9 @@ async function run() {
 
   let app = App.create_app("canvas", viewP);
 
-  console.log(view['ptr'], app.get_by_id_element('123'));
+  // console.log(view['ptr'], app.get_by_id_element('123'));
 
-  console.log(Label['__wrap'](app.get_by_id_element('label')?.js_ptr));
+  // console.log(Label['__wrap'](app.get_by_id_element('label')?.js_ptr));
 
   app.start("canvas")
 }

@@ -1,5 +1,6 @@
 use crate::js_warpper::element::Element;
 use eframe::wasm_bindgen::{self, prelude::*};
+
 #[wasm_bindgen]
 pub struct Input {
     #[wasm_bindgen(skip)]
@@ -43,5 +44,12 @@ impl Input {
                 std::mem::transmute::<&Input, *const u8>(self),
             )
         }
+    }
+}
+
+use eframe::egui::Ui;
+impl Input {
+    pub fn update(&mut self, ui: &mut Ui) {
+        ui.text_edit_singleline(&mut self.text);
     }
 }
