@@ -2,6 +2,7 @@ pub mod label;
 pub mod link;
 pub mod view;
 
+use eframe::wasm_bindgen::__rt::WasmRefCell;
 use eframe::wasm_bindgen::{self, prelude::*};
 use label::Label;
 use link::Link;
@@ -18,7 +19,12 @@ impl Element {
     }
     #[wasm_bindgen(getter = iptr)]
     pub fn get_ptr(&self) -> *const u8 {
+        // return Box::into_raw(Box::new(WasmRefCell::new(unsafe {*self.1})));
         return self.1 as *const u8;
+    }
+    #[wasm_bindgen(getter = js_ptr)]
+    pub fn get_js_ptr(&self) -> u32 {
+        return self.get_ptr() as u32 - 4;
     }
 }
 

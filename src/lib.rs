@@ -18,18 +18,18 @@ pub fn log(s: &str) {
     web_sys::console::log_1(&eframe::wasm_bindgen::JsValue::from_str(s));
 }
 
-#[wasm_bindgen]
-pub struct Test {}
+// #[wasm_bindgen]
+// pub struct Test {}
 
-#[wasm_bindgen]
-impl Test{
-    pub fn new() -> Test{
-        Test {  }
-    }
-}
-#[wasm_bindgen]
-pub fn run_test(t: &Test)  {
+// #[wasm_bindgen]
+// impl Test{
+//     pub fn new() -> Test{
+//         Test {  }
+//     }
+// }
+// #[wasm_bindgen]
+// pub fn run_test(t: &Test)  {
     
-    log(&format!("{:p}", t));
+//     log(&format!("{:p}", t));
 
-}
+// }

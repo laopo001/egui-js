@@ -32,7 +32,7 @@ impl App {
         let app = self.internal_app;
         eframe::start_web(canvas_id, Box::new(app))
     }
-    pub fn get_by_id_view(&self, id: &str) -> Option<Element> {
+    pub fn get_by_id_element(&self, id: &str) -> Option<Element> {
         let root = self.internal_app.get_data();
         return get_element(root, id);
     }

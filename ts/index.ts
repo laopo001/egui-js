@@ -1,4 +1,4 @@
-import init, { App, Label, View, Link, Test, run_test } from '../static/egui_js.js';
+import init, { App, Label, View, Link, } from '../static/egui_js.js';
 async function run() {
   await init();
   let viewP = View.new("vertical");
@@ -29,14 +29,10 @@ async function run() {
 
   let app = App.create_app("canvas", viewP);
 
-  console.log(view['ptr'], app.get_by_id_view('123'));
+  console.log(view['ptr'], app.get_by_id_element('123'));
 
-  console.log(Label['__wrap'](app.get_by_id_view('label')?.iptr! - 4));
+  console.log(Label['__wrap'](app.get_by_id_element('label')?.js_ptr));
 
   app.start("canvas")
-
-  let t = Test.new();
-  console.log(t);
-  run_test(t);
 }
 run();
