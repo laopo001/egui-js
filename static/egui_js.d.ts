@@ -25,10 +25,10 @@ export class App {
 export class Button {
   free(): void;
 /**
-* @param {string} text
+* @param {Text} text
 * @returns {Button}
 */
-  static new(text: string): Button;
+  static new(text: Text): Button;
 /**
 * @returns {Element}
 */
@@ -42,9 +42,9 @@ export class Button {
 */
   id: string;
 /**
-* @returns {string}
+* @returns {Text}
 */
-  text: string;
+  text: Text;
 }
 /**
 */
@@ -103,20 +103,20 @@ export class Label {
 */
   id: string;
 /**
-* @returns {string}
+* @returns {Text}
 */
-  text: string;
+  text: Text;
 }
 /**
 */
 export class Link {
   free(): void;
 /**
-* @param {string} text
+* @param {Text} text
 * @param {string} url
 * @returns {Link}
 */
-  static new(text: string, url: string): Link;
+  static new(text: Text, url: string): Link;
 /**
 * @returns {Element}
 */
@@ -126,9 +126,9 @@ export class Link {
 */
   id: string;
 /**
-* @returns {string}
+* @returns {Text}
 */
-  text: string;
+  text: Text;
 /**
 * @returns {string}
 */
@@ -218,9 +218,9 @@ export interface InitOutput {
   readonly text_set_id: (a: number, b: number, c: number) => void;
   readonly text_as_element: (a: number) => number;
   readonly __wbg_button_free: (a: number) => void;
-  readonly button_new: (a: number, b: number) => number;
-  readonly button_set_text: (a: number, b: number, c: number) => void;
-  readonly button_get_text: (a: number, b: number) => void;
+  readonly button_new: (a: number) => number;
+  readonly button_set_text: (a: number, b: number) => void;
+  readonly button_get_text: (a: number) => number;
   readonly button_get_id: (a: number, b: number) => void;
   readonly button_set_id: (a: number, b: number, c: number) => void;
   readonly button_as_element: (a: number) => number;
@@ -245,15 +245,15 @@ export interface InitOutput {
   readonly view_as_element: (a: number) => number;
   readonly __wbg_label_free: (a: number) => void;
   readonly label_new: (a: number) => number;
-  readonly label_set_text: (a: number, b: number, c: number) => void;
-  readonly label_get_text: (a: number, b: number) => void;
+  readonly label_set_text: (a: number, b: number) => void;
+  readonly label_get_text: (a: number) => number;
   readonly label_get_id: (a: number, b: number) => void;
   readonly label_set_id: (a: number, b: number, c: number) => void;
   readonly label_as_element: (a: number) => number;
   readonly __wbg_link_free: (a: number) => void;
-  readonly link_new: (a: number, b: number, c: number, d: number) => number;
-  readonly link_set_text: (a: number, b: number, c: number) => void;
-  readonly link_get_text: (a: number, b: number) => void;
+  readonly link_new: (a: number, b: number, c: number) => number;
+  readonly link_set_text: (a: number, b: number) => void;
+  readonly link_get_text: (a: number) => number;
   readonly link_set_url: (a: number, b: number, c: number) => void;
   readonly link_get_url: (a: number, b: number) => void;
   readonly link_get_id: (a: number, b: number) => void;

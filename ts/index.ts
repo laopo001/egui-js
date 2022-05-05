@@ -15,11 +15,11 @@ async function run() {
 
   let input = Input.new("name");
   view.add_child_input(input);
-
-  let link = Link.new("egui on GitHub", "https://www.github.com/emilk/egui/")
+  text = Text.new("egui on GitHub test", new Uint8Array([255, 0, 255, 1]));
+  let link = Link.new(text, "https://www.github.com/emilk/egui/")
   view.add_child_link(link);
-
-  let button = Button.new('button');
+  text = Text.new("button", new Uint8Array([0, 255, 0, 1]));
+  let button = Button.new(text);
   button.on_click(function () {
     input.text = input.text + "1";
   });

@@ -1,4 +1,5 @@
 use crate::js_warpper::element::Element;
+use crate::js_warpper::element::text::Text;
 use eframe::wasm_bindgen::{self, prelude::*};
 
 #[wasm_bindgen]
@@ -6,7 +7,7 @@ pub struct Link {
     #[wasm_bindgen(skip)]
     pub typename: String,
     #[wasm_bindgen(skip)]
-    pub text: String,
+    pub text: Text,
     #[wasm_bindgen(skip)]
     pub url: String,
     #[wasm_bindgen(skip)]
@@ -15,20 +16,20 @@ pub struct Link {
 
 #[wasm_bindgen]
 impl Link {
-    pub fn new(text: &str, url: &str) -> Link {
+    pub fn new(text: Text, url: &str) -> Link {
         Link {
             typename: "Link".to_string(),
-            text: text.to_string(),
+            text: text,
             url: url.to_string(),
             id: "".to_string(),
         }
     }
     #[wasm_bindgen(setter = text)]
-    pub fn set_text(&mut self, data: &str) {
-        return self.text = data.to_string();
+    pub fn set_text(&mut self, text: Text) {
+        return self.text = text;
     }
     #[wasm_bindgen(getter = text)]
-    pub fn get_text(&self) -> String {
+    pub fn get_text(&self) -> Text {
         return self.text.clone();
     }
     #[wasm_bindgen(setter = url)]
@@ -61,6 +62,6 @@ impl Link {
 use eframe::egui::Ui;
 impl Link {
     pub fn update(&mut self, ui: &mut Ui) {
-        ui.hyperlink_to(&self.text, &self.url);
+        ui.hyperlink_to(self.text.create(), &self.url);
     }
 }

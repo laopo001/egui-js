@@ -1,6 +1,8 @@
 use crate::js_warpper::element::Element;
 use eframe::egui::{Color32, RichText};
 use eframe::wasm_bindgen::{self, prelude::*};
+
+#[derive(Clone)]
 #[wasm_bindgen]
 pub struct Text {
     #[wasm_bindgen(skip)]

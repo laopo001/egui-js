@@ -1,4 +1,5 @@
 use crate::js_warpper::element::Element;
+use crate::js_warpper::element::text::Text;
 use crate::log;
 use eframe::wasm_bindgen::{self, prelude::*};
 
@@ -7,7 +8,7 @@ pub struct Button {
     #[wasm_bindgen(skip)]
     pub typename: String,
     #[wasm_bindgen(skip)]
-    pub text: String,
+    pub text: Text,
     #[wasm_bindgen(skip)]
     pub id: String,
     click_cb: Box<js_sys::Function>,
@@ -15,20 +16,20 @@ pub struct Button {
 
 #[wasm_bindgen]
 impl Button {
-    pub fn new(text: &str) -> Button {
+    pub fn new(text: Text) -> Button {
         Button {
             typename: "Button".to_string(),
-            text: text.to_string(),
+            text: text,
             id: "".to_string(),
             click_cb: Box::new(js_sys::Function::new_no_args("no")),
         }
     }
     #[wasm_bindgen(setter = text)]
-    pub fn set_text(&mut self, text: &str) {
-        return self.text = text.to_string();
+    pub fn set_text(&mut self, text: Text) {
+        return self.text = text;
     }
     #[wasm_bindgen(getter = text)]
-    pub fn get_text(&self) -> String {
+    pub fn get_text(&self) -> Text {
         return self.text.clone();
     }
     #[wasm_bindgen(getter = id)]
@@ -64,7 +65,7 @@ impl Button {
 use eframe::egui::Ui;
 impl Button {
     pub fn update(&mut self, ui: &mut Ui) {
-        if ui.button(&self.text).clicked() {
+        if ui.button(self.text.create()).clicked() {
             let _ = (self.click_cb).call0(&JsValue::null());
         }
     }

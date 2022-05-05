@@ -22,12 +22,12 @@ impl Label {
         }
     }
     #[wasm_bindgen(setter = text)]
-    pub fn set_text(&mut self, text: &str) {
-        return self.text.text = text.to_string();
+    pub fn set_text(&mut self, text: Text) {
+        return self.text = text;
     }
     #[wasm_bindgen(getter = text)]
-    pub fn get_text(&self) -> String {
-        return self.text.text.clone();
+    pub fn get_text(&self) -> Text {
+        return self.text.clone();
     }
     #[wasm_bindgen(getter = id)]
     pub fn get_id(&self) -> String {
