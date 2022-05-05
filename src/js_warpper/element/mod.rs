@@ -3,6 +3,7 @@ pub mod input;
 pub mod label;
 pub mod link;
 pub mod view;
+pub mod text;
 // use eframe::wasm_bindgen::__rt::WasmRefCell;
 use button::Button;
 use eframe::wasm_bindgen::{self, prelude::*};

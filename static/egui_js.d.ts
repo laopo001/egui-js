@@ -90,10 +90,10 @@ export class Input {
 export class Label {
   free(): void;
 /**
-* @param {string} text
+* @param {Text} text
 * @returns {Label}
 */
-  static new(text: string): Label;
+  static new(text: Text): Label;
 /**
 * @returns {Element}
 */
@@ -133,6 +133,37 @@ export class Link {
 * @returns {string}
 */
   url: string;
+}
+/**
+*/
+export class Text {
+  free(): void;
+/**
+* @param {string} text
+* @param {Uint8Array} color
+* @returns {Text}
+*/
+  static new(text: string, color: Uint8Array): Text;
+/**
+* @param {Uint8Array} color
+*/
+  set_color(color: Uint8Array): void;
+/**
+* @returns {Element}
+*/
+  as_element(): Element;
+/**
+* @returns {Uint8Array}
+*/
+  readonly color: Uint8Array;
+/**
+* @returns {string}
+*/
+  id: string;
+/**
+* @returns {string}
+*/
+  text: string;
 }
 /**
 */
@@ -177,6 +208,15 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
+  readonly __wbg_text_free: (a: number) => void;
+  readonly text_new: (a: number, b: number, c: number, d: number) => number;
+  readonly text_set_text: (a: number, b: number, c: number) => void;
+  readonly text_get_text: (a: number, b: number) => void;
+  readonly text_set_color: (a: number, b: number, c: number) => void;
+  readonly text_get_color: (a: number, b: number) => void;
+  readonly text_get_id: (a: number, b: number) => void;
+  readonly text_set_id: (a: number, b: number, c: number) => void;
+  readonly text_as_element: (a: number) => number;
   readonly __wbg_button_free: (a: number) => void;
   readonly button_new: (a: number, b: number) => number;
   readonly button_set_text: (a: number, b: number, c: number) => void;
@@ -204,7 +244,7 @@ export interface InitOutput {
   readonly view_set_id: (a: number, b: number, c: number) => void;
   readonly view_as_element: (a: number) => number;
   readonly __wbg_label_free: (a: number) => void;
-  readonly label_new: (a: number, b: number) => number;
+  readonly label_new: (a: number) => number;
   readonly label_set_text: (a: number, b: number, c: number) => void;
   readonly label_get_text: (a: number, b: number) => void;
   readonly label_get_id: (a: number, b: number) => void;

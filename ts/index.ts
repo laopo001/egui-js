@@ -1,4 +1,4 @@
-import init, { App, Label, View, Link, Input, Button } from '../static/egui_js.js';
+import init, { App, Label, View, Link, Input, Button, Text } from '../static/egui_js.js';
 async function run() {
   await init();
   let viewP = View.new("vertical");
@@ -7,7 +7,9 @@ async function run() {
   let view = View.new("horizontal");
   view.id = "123"
 
-  let label = Label.new("123")
+  let text = Text.new("123", new Uint8Array([0, 0, 0, 1]));
+
+  let label = Label.new(text)
   label.id = "label"
   view.add_child_label(label);
 
@@ -19,7 +21,7 @@ async function run() {
 
   let button = Button.new('button');
   button.on_click(function () {
-    input.text =input.text + "1";
+    input.text = input.text + "1";
   });
   view.add_child_button(button);
 

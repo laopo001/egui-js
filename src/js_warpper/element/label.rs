@@ -1,31 +1,33 @@
 use crate::js_warpper::element::Element;
+use crate::js_warpper::element::text::Text;
+
 use eframe::wasm_bindgen::{self, prelude::*};
 #[wasm_bindgen]
 pub struct Label {
     #[wasm_bindgen(skip)]
     pub typename: String,
     #[wasm_bindgen(skip)]
-    pub text: String,
+    pub text: Text,
     #[wasm_bindgen(skip)]
     pub id: String,
 }
 
 #[wasm_bindgen]
 impl Label {
-    pub fn new(text: &str) -> Label {
+    pub fn new(text: Text) -> Label {
         Label {
-            typename: "Label".to_string(),
-            text: text.to_string(),
+            typename: "Label".into(),
+            text: text,
             id: "".to_string(),
         }
     }
     #[wasm_bindgen(setter = text)]
     pub fn set_text(&mut self, text: &str) {
-        return self.text = text.to_string();
+        return self.text.text = text.to_string();
     }
     #[wasm_bindgen(getter = text)]
     pub fn get_text(&self) -> String {
-        return self.text.clone();
+        return self.text.text.clone();
     }
     #[wasm_bindgen(getter = id)]
     pub fn get_id(&self) -> String {
@@ -49,6 +51,6 @@ impl Label {
 use eframe::egui::Ui;
 impl Label {
     pub fn update(&mut self, ui: &mut Ui) {
-        ui.label(&self.text);
+        ui.label(self.text.create());
     }
 }

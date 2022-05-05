@@ -1,6 +1,15 @@
 /* tslint:disable */
 /* eslint-disable */
 export const memory: WebAssembly.Memory;
+export function __wbg_text_free(a: number): void;
+export function text_new(a: number, b: number, c: number, d: number): number;
+export function text_set_text(a: number, b: number, c: number): void;
+export function text_get_text(a: number, b: number): void;
+export function text_set_color(a: number, b: number, c: number): void;
+export function text_get_color(a: number, b: number): void;
+export function text_get_id(a: number, b: number): void;
+export function text_set_id(a: number, b: number, c: number): void;
+export function text_as_element(a: number): number;
 export function __wbg_button_free(a: number): void;
 export function button_new(a: number, b: number): number;
 export function button_set_text(a: number, b: number, c: number): void;
@@ -28,7 +37,7 @@ export function view_get_id(a: number, b: number): void;
 export function view_set_id(a: number, b: number, c: number): void;
 export function view_as_element(a: number): number;
 export function __wbg_label_free(a: number): void;
-export function label_new(a: number, b: number): number;
+export function label_new(a: number): number;
 export function label_set_text(a: number, b: number, c: number): void;
 export function label_get_text(a: number, b: number): void;
 export function label_get_id(a: number, b: number): void;
