@@ -1,8 +1,13 @@
+import { View } from "./element/view";
+import { formatNode } from "./element/element";
+
+let root: View | null = null;
+
 export default class EGUI {
     static render(node: Node) {
-        console.log(node);
         let component = node.element(node.props)
-        return formatNode(component);
+        root = formatNode(component);
+        return root!.create();
     }
     // static createElement(element: string, props: { children })
     static createElement(element, props?, ...children) {
@@ -10,14 +15,7 @@ export default class EGUI {
     }
 }
 
-function formatNode(node) {
-    if (node.element.is_element) {
-        return node.element.create(node.props);
-    } else {
-        let component = node.element(node.props)
-        return formatNode(component)
-    }
-}
+
 
 export class Node {
     element: Function;

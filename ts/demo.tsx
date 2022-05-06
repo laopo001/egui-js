@@ -1,12 +1,10 @@
-import { Label, View } from './element';
-import EGUI  from './egui'
+import { Label, View, Text } from './element';
+import EGUI from './egui'
 
 
 export function Demo(props: { test: string }) {
 
-    let res = <View >
-
-        <View ><Label>{props.test}</Label></View><Label>123</Label>
+    return <View >
+        <View ><Label>{props.test}</Label></View><Label><Text color={[255, 0, 0, 1]}>123</Text></Label>
     </View>
-    return res;
 }

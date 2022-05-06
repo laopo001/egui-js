@@ -1,23 +1,23 @@
 import * as egui from '../../static/egui_js.js';
 import { IElement } from './element';
+import { Label } from './label';
 
 export class View extends IElement<{ dir?: string, children: Array<any> }> {
     static defaultProps = {
         dir: "vertical"
     }
-    static create(props) {
-        Object.assign(props, View.defaultProps)
-
-        let children_data = super.to_data(props.children);
+    create() {
+        let children_data = this.children;
 
 
-        let viewP = egui.View.new(props.dir);
+        let viewP = egui.View.new(this.props.dir!);
         for (let i = 0; i < children_data.length; i++) {
-            if (children_data[i] instanceof egui.Label) {
-                viewP.add_child_label(children_data[i]);
+            let child = children_data[i];
+            if (child instanceof Label) {
+                viewP.add_child_label(child.create());
             }
-            if (children_data[i] instanceof egui.View) {
-                viewP.add_child_view(children_data[i]);
+            if (child instanceof View) {
+                viewP.add_child_view(child.create());
             }
         }
 
