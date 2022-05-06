@@ -1,3 +1,4 @@
 export * from './label';
 export * from './view';
-export * from './text'
+export * from './text';
+export * from './link';
