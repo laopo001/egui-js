@@ -32,6 +32,7 @@ export function __wbg_set_view_width(a: number, b: number): void;
 export function __wbg_get_view_height(a: number): number;
 export function __wbg_set_view_height(a: number, b: number): void;
 export function view_new(a: number, b: number): number;
+export function view_set_background_data(a: number, b: number, c: number): void;
 export function view_add_child_view(a: number, b: number): void;
 export function view_add_child_label(a: number, b: number): void;
 export function view_add_child_link(a: number, b: number): void;

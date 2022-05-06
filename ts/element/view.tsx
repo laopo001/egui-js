@@ -6,10 +6,12 @@ import { Input } from './input'
 import { Button } from './button';
 import { Image } from './image';
 export class View extends IElement<{
-    dir?: 'vertical' | 'horizontal', width?: number, height?: number, children: Array<any>
+    dir?: 'vertical' | 'horizontal', width?: number, height?: number, children: Array<any>,
+    backgroundColor?: [number, number, number, number],
 }> {
     static defaultProps = {
-        dir: "vertical"
+        dir: "vertical",
+        backgroundColor: [248, 248, 248, 255]
     }
     create() {
         let children_data = this.children;
@@ -20,6 +22,10 @@ export class View extends IElement<{
         if (this.props.height) {
             viewP.height = this.props.height;
         }
+        if (this.props.backgroundColor) {
+            viewP.set_background_data(Uint8Array.from(this.props.backgroundColor));
+        }
+
         for (let i = 0; i < children_data.length; i++) {
             let child = children_data[i];
             if (child instanceof Label) {

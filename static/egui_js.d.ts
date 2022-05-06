@@ -208,6 +208,10 @@ export class View {
 */
   static new(direction: string): View;
 /**
+* @param {Uint8Array} data
+*/
+  set_background_data(data: Uint8Array): void;
+/**
 * @param {View} node
 */
   add_child_view(node: View): void;
@@ -282,6 +286,7 @@ export interface InitOutput {
   readonly __wbg_get_view_height: (a: number) => number;
   readonly __wbg_set_view_height: (a: number, b: number) => void;
   readonly view_new: (a: number, b: number) => number;
+  readonly view_set_background_data: (a: number, b: number, c: number) => void;
   readonly view_add_child_view: (a: number, b: number) => void;
   readonly view_add_child_label: (a: number, b: number) => void;
   readonly view_add_child_link: (a: number, b: number) => void;

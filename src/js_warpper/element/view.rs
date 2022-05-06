@@ -20,6 +20,8 @@ pub struct View {
     pub id: String,
     pub width: f32,
     pub height: f32,
+    #[wasm_bindgen(skip)]
+    pub background_data: Box<[u8]>,
 }
 
 #[wasm_bindgen]
@@ -32,7 +34,11 @@ impl View {
             id: "".to_string(),
             width: 0.0,
             height: 0.0,
+            background_data: Box::new([]),
         }
+    }
+    pub fn set_background_data(&mut self, data: Box<[u8]>) {
+        self.background_data = data;
     }
     pub fn add_child_view(&mut self, node: &View) {
         self.children.push(node.as_element());

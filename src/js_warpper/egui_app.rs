@@ -76,10 +76,25 @@ fn loop_div(ui: &mut Ui, view: &View) {
             }
         }
     };
+
+    if view.background_data.len() > 0 {
+        ui.painter().rect_filled(
+            ui.available_rect_before_wrap(),
+            0.0,
+            egui::Color32::from_rgba_premultiplied(
+                view.background_data[0],
+                view.background_data[1],
+                view.background_data[2],
+                view.background_data[3],
+            ),
+        );
+    }
+
     if view.width > 0.0 {
         ui.set_width(view.width);
     }
     if view.height > 0.0 {
+        // log(view.height.to_string().as_str());
         ui.set_height(view.height);
     }
 

@@ -67,7 +67,7 @@ impl Text {
             self.color[0],
             self.color[1],
             self.color[2],
-            self.color[3] * 255,
+            self.color[3],
         ));
     }
 }

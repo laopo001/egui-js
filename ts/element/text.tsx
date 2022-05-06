@@ -3,7 +3,7 @@ import { IElement } from './element';
 
 export class Text extends IElement<{ children: String, color?: [number, number, number, number] }> {
     static defaultProps = {
-        color: [0, 0, 0, 1]
+        color: [255, 0, 0, 255]
     }
     create() {
         let str = this.children[0];
