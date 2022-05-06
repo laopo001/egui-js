@@ -1,5 +1,6 @@
-import { Label, View, Text, Link, Input, Button } from './element';
+import { Label, View, Text, Link, Input, Button, Image } from './element';
 import EGUI from './egui'
+import logo from './images/googlelogo.png';
 
 
 export function Demo(props: { test: string }) {
@@ -12,8 +13,10 @@ export function Demo(props: { test: string }) {
         </View>
         <Input>123123</Input>
 
-        <Button onClick={()=>{
+        <Button onClick={() => {
             console.log("click");
         }}><Text color={[0, 255, 0, 1]}>test</Text></Button>
+        <Image height={100} width={300} url={logo} />
+        <Input>123123</Input>
     </View>
 }

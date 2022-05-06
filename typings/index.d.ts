@@ -1,7 +1,10 @@
 export { };
-declare module '*.less'
-declare module '*.css'
+
+
 declare global {
+    declare module '*.less'
+    declare module '*.css'
+    declare module '*.png'
     // interface Window {
     //     ENV: any;
     // }

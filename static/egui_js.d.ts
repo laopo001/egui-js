@@ -65,6 +65,39 @@ export class Element {
 }
 /**
 */
+export class Image {
+  free(): void;
+/**
+* @returns {Image}
+*/
+  static new(): Image;
+/**
+* @param {Uint8Array} data
+* @param {number} width
+* @param {number} height
+*/
+  set_data(data: Uint8Array, width: number, height: number): void;
+/**
+* @returns {Uint8Array}
+*/
+  get_data(): Uint8Array;
+/**
+* @returns {Element}
+*/
+  as_element(): Element;
+/**
+*/
+  height: number;
+/**
+* @returns {string}
+*/
+  id: string;
+/**
+*/
+  width: number;
+}
+/**
+*/
 export class Input {
   free(): void;
 /**
@@ -195,6 +228,10 @@ export class View {
 */
   add_child_button(node: Button): void;
 /**
+* @param {Image} node
+*/
+  add_child_image(node: Image): void;
+/**
 * @returns {Element}
 */
   as_element(): Element;
@@ -240,6 +277,7 @@ export interface InitOutput {
   readonly view_add_child_link: (a: number, b: number) => void;
   readonly view_add_child_input: (a: number, b: number) => void;
   readonly view_add_child_button: (a: number, b: number) => void;
+  readonly view_add_child_image: (a: number, b: number) => void;
   readonly view_get_id: (a: number, b: number) => void;
   readonly view_set_id: (a: number, b: number, c: number) => void;
   readonly view_as_element: (a: number) => number;
@@ -250,6 +288,17 @@ export interface InitOutput {
   readonly label_get_id: (a: number, b: number) => void;
   readonly label_set_id: (a: number, b: number, c: number) => void;
   readonly label_as_element: (a: number) => number;
+  readonly __wbg_image_free: (a: number) => void;
+  readonly __wbg_get_image_width: (a: number) => number;
+  readonly __wbg_set_image_width: (a: number, b: number) => void;
+  readonly __wbg_get_image_height: (a: number) => number;
+  readonly __wbg_set_image_height: (a: number, b: number) => void;
+  readonly image_new: () => number;
+  readonly image_set_data: (a: number, b: number, c: number, d: number, e: number) => void;
+  readonly image_get_data: (a: number, b: number) => void;
+  readonly image_get_id: (a: number, b: number) => void;
+  readonly image_set_id: (a: number, b: number, c: number) => void;
+  readonly image_as_element: (a: number) => number;
   readonly __wbg_link_free: (a: number) => void;
   readonly link_new: (a: number, b: number, c: number) => number;
   readonly link_set_text: (a: number, b: number) => void;

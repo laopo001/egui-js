@@ -1,9 +1,10 @@
 pub mod button;
+pub mod image;
 pub mod input;
 pub mod label;
 pub mod link;
-pub mod view;
 pub mod text;
+pub mod view;
 // use eframe::wasm_bindgen::__rt::WasmRefCell;
 use button::Button;
 use eframe::wasm_bindgen::{self, prelude::*};
@@ -11,6 +12,7 @@ use input::Input;
 use label::Label;
 use link::Link;
 use view::View;
+use image::Image;
 #[wasm_bindgen]
 pub struct Element(String, *const u8);
 
@@ -50,7 +52,9 @@ impl Element {
     pub fn as_button(&self) -> &mut Button {
         return unsafe { std::mem::transmute::<*const u8, &mut Button>(self.1) };
     }
-
+    pub fn as_image(&self) -> &mut Image {
+        return unsafe { std::mem::transmute::<*const u8, &mut Image>(self.1) };
+    }
     pub fn get_type(&self) -> &str {
         return self.0.as_str();
     }

@@ -1,3 +1,5 @@
+use std::vec;
+
 // use eframe::wasm_bindgen::{self, prelude::*};
 use eframe::wasm_bindgen::{self, prelude::*};
 use eframe::{
@@ -36,6 +38,11 @@ impl epi::App for WebApp {
             let data = unsafe { &*self.data };
             loop_div(ui, data);
 
+            // let texture = ui
+            //     .ctx()
+            //     .load_texture("my-image", egui::ColorImage::example());
+            // ui.image(&texture, [500.0, 100.0]);
+
             // ui.text_edit_singleline(&mut "name");
 
             // for event in &ctx.output().events {
@@ -62,6 +69,9 @@ fn loop_div(ui: &mut Ui, view: &View) {
                 input.update(ui);
             } else if c.get_type() == "Button" {
                 let el = c.as_button();
+                el.update(ui);
+            } else if c.get_type() == "Image" {
+                let el = c.as_image();
                 el.update(ui);
             }
         }

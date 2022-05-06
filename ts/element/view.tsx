@@ -4,6 +4,7 @@ import { Label } from './label';
 import { Link } from './link';
 import { Input } from './input'
 import { Button } from './button';
+import { Image } from './image';
 export class View extends IElement<{ dir?: 'vertical' | 'horizontal', children: Array<any> }> {
     static defaultProps = {
         dir: "vertical"
@@ -29,6 +30,9 @@ export class View extends IElement<{ dir?: 'vertical' | 'horizontal', children: 
             }
             if (child instanceof Button) {
                 viewP.add_child_button(child.create());
+            }
+            if (child instanceof Image) {
+                viewP.add_child_image(child.create());
             }
         }
 

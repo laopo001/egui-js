@@ -1,9 +1,10 @@
-use crate:: log;
+use super::button::Button;
+use super::image::Image;
+use super::input::Input;
 use super::label::Label;
 use super::link::Link;
 use super::Element;
-use super::input::Input;
-use super::button::Button;
+use crate::log;
 use eframe::wasm_bindgen::{self, prelude::*};
 use std::vec;
 
@@ -44,6 +45,10 @@ impl View {
     pub fn add_child_button(&mut self, node: &Button) {
         self.children.push(node.as_element());
     }
+    pub fn add_child_image(&mut self, node: &Image) {
+        self.children.push(node.as_element());
+    }
+
     #[wasm_bindgen(getter = id)]
     pub fn get_id(&self) -> String {
         return self.id.to_string();
