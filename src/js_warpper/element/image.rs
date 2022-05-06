@@ -60,7 +60,7 @@ impl Image {
                 self.data.as_ref(),
             )
         } else {
-            egui::ColorImage::example()
+            return;
         };
         let texture = ui.ctx().load_texture(
             "my-image",

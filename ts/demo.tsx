@@ -6,12 +6,13 @@ import logo from './images/googlelogo.png';
 export function Demo(props: { test: string }) {
 
     return <View >
-        <View dir='horizontal'>
+        <View dir='horizontal' width={200} height={300}>
             <Label>{props.test}</Label>
             <Label><Text color={[255, 0, 0, 1]}>123</Text></Label>
             <Link url='https://www.baidu.com'>123</Link>
+            <Input>123123</Input>
         </View>
-        <Input>123123</Input>
+
 
         <Button onClick={() => {
             console.log("click");

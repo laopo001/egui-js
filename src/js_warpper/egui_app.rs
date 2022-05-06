@@ -76,6 +76,13 @@ fn loop_div(ui: &mut Ui, view: &View) {
             }
         }
     };
+    if view.width > 0.0 {
+        ui.set_width(view.width);
+    }
+    if view.height > 0.0 {
+        ui.set_height(view.height);
+    }
+
     if view.dir == "vertical" {
         ui.vertical(run);
     } else if view.dir == "horizontal" {

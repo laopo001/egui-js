@@ -236,9 +236,15 @@ export class View {
 */
   as_element(): Element;
 /**
+*/
+  height: number;
+/**
 * @returns {string}
 */
   id: string;
+/**
+*/
+  width: number;
 }
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
@@ -271,6 +277,10 @@ export interface InitOutput {
   readonly app_start: (a: number, b: number, c: number, d: number) => void;
   readonly app_get_by_id_element: (a: number, b: number, c: number) => number;
   readonly __wbg_view_free: (a: number) => void;
+  readonly __wbg_get_view_width: (a: number) => number;
+  readonly __wbg_set_view_width: (a: number, b: number) => void;
+  readonly __wbg_get_view_height: (a: number) => number;
+  readonly __wbg_set_view_height: (a: number, b: number) => void;
   readonly view_new: (a: number, b: number) => number;
   readonly view_add_child_view: (a: number, b: number) => void;
   readonly view_add_child_label: (a: number, b: number) => void;

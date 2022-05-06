@@ -5,15 +5,21 @@ import { Link } from './link';
 import { Input } from './input'
 import { Button } from './button';
 import { Image } from './image';
-export class View extends IElement<{ dir?: 'vertical' | 'horizontal', children: Array<any> }> {
+export class View extends IElement<{
+    dir?: 'vertical' | 'horizontal', width?: number, height?: number, children: Array<any>
+}> {
     static defaultProps = {
         dir: "vertical"
     }
     create() {
         let children_data = this.children;
-
-
         let viewP = egui.View.new(this.props.dir!);
+        if (this.props.width) {
+            viewP.width = this.props.width;
+        }
+        if (this.props.height) {
+            viewP.height = this.props.height;
+        }
         for (let i = 0; i < children_data.length; i++) {
             let child = children_data[i];
             if (child instanceof Label) {

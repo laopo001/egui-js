@@ -18,6 +18,8 @@ pub struct View {
     pub dir: String,
     #[wasm_bindgen(skip)]
     pub id: String,
+    pub width: f32,
+    pub height: f32,
 }
 
 #[wasm_bindgen]
@@ -28,6 +30,8 @@ impl View {
             children: vec![],
             dir: direction.to_string(),
             id: "".to_string(),
+            width: 0.0,
+            height: 0.0,
         }
     }
     pub fn add_child_view(&mut self, node: &View) {
