@@ -2,7 +2,9 @@ import * as egui from '../../static/egui_js.js';
 import { IElement } from './element';
 import { Label } from './label';
 import { Link } from './link';
-export class View extends IElement<{ dir?: string, children: Array<any> }> {
+import { Input } from './input'
+import { Button } from './button';
+export class View extends IElement<{ dir?: 'vertical' | 'horizontal', children: Array<any> }> {
     static defaultProps = {
         dir: "vertical"
     }
@@ -21,6 +23,12 @@ export class View extends IElement<{ dir?: string, children: Array<any> }> {
             }
             if (child instanceof Link) {
                 viewP.add_child_link(child.create());
+            }
+            if (child instanceof Input) {
+                viewP.add_child_input(child.create());
+            }
+            if (child instanceof Button) {
+                viewP.add_child_button(child.create());
             }
         }
 

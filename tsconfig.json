@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "module": "commonjs",
+    "module": "ESNext",
     "jsx": "react",
     "jsxFactory": "EGUI.createElement",
     "lib": [

@@ -18,7 +18,8 @@ export abstract class IElement<T = {}> {
         for (let i = 0; i < children.length; i++) {
             this.children.push(formatNode(children[i]))
         }
-        Object.assign(this.props, Object.getPrototypeOf(this).constructor.defaultProps)
+        this.props = Object.assign({}, Object.getPrototypeOf(this).constructor.defaultProps, this.props)
+
     }
 
     static is_element = true;
