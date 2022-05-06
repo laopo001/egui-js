@@ -4,7 +4,7 @@ const webpack = require('webpack');
 // const WasmPackPlugin = require("@wasm-tool/wasm-pack-plugin");
 
 module.exports = {
-    entry: './ts/index.ts',
+    entry: './ts/index',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'index.[contenthash:8].js',
@@ -28,6 +28,9 @@ module.exports = {
             TextEncoder: ['text-encoding', 'TextEncoder']
         })
     ],
+    resolve: {
+        extensions: ['.js', '.jsx', '.wasm', '.ts', '.tsx', '.json'],
+    },
     mode: 'development',
     experiments: {
         asyncWebAssembly: true

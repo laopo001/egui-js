@@ -2,6 +2,8 @@
   "compilerOptions": {
     "target": "ES2017",
     "module": "commonjs",
+    "jsx": "react",
+    "jsxFactory": "EGUI.createElement",
     "lib": [
       "DOM",
       "ES2015"
@@ -22,10 +24,14 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./typings"
+    ],
   },
   "include": [
-    "ts"
+    "ts","typings"
   ],
   "exclude": []
 }

@@ -2,7 +2,7 @@
   "name": "egui-js",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "webpack",
     "watch:rs": "nodemon --watch src -e rs --exec npm run build:rs",

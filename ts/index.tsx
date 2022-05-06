@@ -1,4 +1,7 @@
 import init, { App, Label, View, Link, Input, Button, Text } from '../static/egui_js.js';
+import { Demo } from './demo'
+import EGUI from './egui';
+
 async function run() {
   await init();
   let viewP = View.new("vertical");
@@ -15,7 +18,7 @@ async function run() {
 
   let input = Input.new("name");
   view.add_child_input(input);
-  text = Text.new("egui on GitHub test", new Uint8Array([255, 0, 255, 1]));
+  text = Text.new("egui on GitHub test", new Uint8Array([255, 0, 0, 1]));
   let link = Link.new(text, "https://www.github.com/emilk/egui/")
   view.add_child_link(link);
   text = Text.new("button", new Uint8Array([0, 255, 0, 1]));
@@ -36,12 +39,17 @@ async function run() {
   document.body.style.margin = "0px"
   document.body.appendChild(canvas);
 
-  let app = App.create_app("canvas", viewP);
+  // let app = App.create_app("canvas", viewP);
 
   // console.log(view['ptr'], app.get_by_id_element('123'));
 
   // console.log(Label['__wrap'](app.get_by_id_element('label')?.js_ptr));
 
+
+  let data = EGUI.render(<Demo test="999"></Demo>)
+  console.log(data);
+  let app = App.create_app("canvas", data);
   app.start("canvas")
+
 }
 run();
