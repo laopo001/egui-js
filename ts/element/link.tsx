@@ -1,7 +1,11 @@
 import * as egui from '../../static/egui_js.js';
 import { IElement } from './element';
 import { Text } from './text'
-export class Link extends IElement<{ children: string | Text , url: string}> {
+export interface LinkProps {
+    children: string | Text, url: string
+}
+
+export class Link extends IElement<LinkProps> {
 
     create() {
         let str = this.children[0];

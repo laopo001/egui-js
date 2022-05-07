@@ -1,7 +1,10 @@
 import * as egui from '../../static/egui_js.js';
 import { IElement } from './element';
 
-export class Input extends IElement<{ children: string }> {
+export interface InputProps {
+    children: string
+}
+export class Input extends IElement<InputProps> {
     create() {
         let str = this.children[0];
         if (typeof str === 'string') {

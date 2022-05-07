@@ -5,10 +5,16 @@ import { Link } from './link';
 import { Input } from './input'
 import { Button } from './button';
 import { Image } from './image';
-export class View extends IElement<{
-    dir?: 'vertical' | 'horizontal', width?: number, height?: number, children: Array<any>,
+
+export interface ViewProps {
+    dir?: 'vertical' | 'horizontal',
+    width?: number,
+    height?: number,
+    children: Array<any> | any,
     backgroundColor?: [number, number, number, number],
-}> {
+}
+
+export class View extends IElement<ViewProps> {
     static defaultProps = {
         dir: "vertical",
         backgroundColor: [248, 248, 248, 255]

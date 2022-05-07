@@ -3,13 +3,14 @@
     "target": "ES2017",
     "module": "ESNext",
     "jsx": "react",
+    "declaration": true,
     "jsxFactory": "EGUI.createElement",
     "lib": [
       "DOM",
       "ES2015"
     ],
     "sourceMap": true,
-    "outDir": "dist",
+    "outDir": "lib",
     "noImplicitAny": false,
     "strictNullChecks": true,
     "moduleResolution": "node",

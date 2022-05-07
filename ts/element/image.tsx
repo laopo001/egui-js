@@ -5,7 +5,11 @@ import { Text } from './text'
 var canvas = document.createElement('canvas');
 var context = canvas.getContext('2d')!;
 
-export class Image extends IElement<{ url: string, width?: number, height?: number }> {
+export interface ImageProps {
+    url: string, width?: number, height?: number
+}
+
+export class Image extends IElement<ImageProps> {
 
     create() {
         let res = egui.Image.new();

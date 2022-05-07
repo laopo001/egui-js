@@ -1,7 +1,12 @@
 import * as egui from '../../static/egui_js.js';
 import { IElement } from './element';
 import { Text } from './text'
-export class Button extends IElement<{ children: string | Text, onClick?: Function }> {
+
+
+export interface ButtonProps {
+    children: string | Text, onClick?: Function
+}
+export class Button extends IElement<ButtonProps> {
 
     create() {
         let str = this.children[0];

@@ -1,7 +1,11 @@
 import * as egui from '../../static/egui_js.js';
 import { IElement } from './element';
-import { Text } from './text'
-export class Label extends IElement<{ children: String | Text }> {
+import { Text } from './text';
+
+export interface LabelProps {
+    children: String | Text
+}
+export class Label extends IElement<LabelProps> {
 
     create() {
         let str = this.children[0];

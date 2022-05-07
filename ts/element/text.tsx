@@ -1,7 +1,12 @@
 import * as egui from '../../static/egui_js.js';
 import { IElement } from './element';
 
-export class Text extends IElement<{ children: String, color?: [number, number, number, number] }> {
+export interface TextProps {
+    children: String, color?: [number, number, number, number]
+}
+
+
+export class Text extends IElement<TextProps> {
     static defaultProps = {
         color: [255, 0, 0, 255]
     }
