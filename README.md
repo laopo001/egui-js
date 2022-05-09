@@ -17,7 +17,9 @@ npm run watch:rs
 npm run serve
 ```
 
-## DEMO
+## DEMO [online](https://egui-js.vercel.app/)
+
+
 
 ```javascript
 import logo from './images/googlelogo.png';
