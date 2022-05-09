@@ -1,6 +1,18 @@
+
+const map = {}
+
+export function useElement(element) {
+    map[element.name.toLowerCase()] = element;
+}
+
+
 export function formatNode(node) {
+
     if (typeof node == 'string' || typeof node == 'number') {
         return node
+    }
+    if (typeof node.element == 'string') {
+        return new map[node.element](node.props);
     }
     if (node.element.is_element) {
         return new node.element(node.props);
@@ -14,6 +26,7 @@ export abstract class IElement<T = {}> {
     constructor(public props: T & {
         id?: string,
     }) {
+
         let children = (props as any).children || [];
         for (let i = 0; i < children.length; i++) {
             this.children.push(formatNode(children[i]))

@@ -1,7 +1,14 @@
-import { View } from "./element/view";
-import { formatNode } from "./element/element";
+import * as elements from "./element";
+import { formatNode, useElement } from "./element/element";
 
-let root: View | null = null;
+
+
+for(let key in elements){
+    useElement(elements[key])
+}
+
+
+let root: elements.View | null = null;
 
 export default class EGUI {
     static render(node: Node) {
